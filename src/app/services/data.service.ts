@@ -18,6 +18,6 @@ export class DataService {
     this.favoritesData.next(payload.filter(item => item.favorite))
   }
   updateList(payload: ICrypto[]) {
-    this.listData.next(payload.filter(item => item.favorite))
+    this.listData.next(payload)
   }
 }

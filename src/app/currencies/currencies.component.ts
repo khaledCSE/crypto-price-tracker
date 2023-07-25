@@ -9,7 +9,7 @@ import { DataService } from '../services/data.service';
   styleUrls: ['./currencies.component.scss']
 })
 export class CurrenciesComponent implements OnInit {
-  list: ICrypto[] = currencies.map((curr) => ({ ...curr, favorite: false }));
+  list: ICrypto[] = [];
   searchTerm: string = '';
   filteredList: ICrypto[];
 
@@ -18,6 +18,9 @@ export class CurrenciesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.dataService.list.subscribe(data => {
+      this.filteredList = data
+    })
   }
 
   filter() {
