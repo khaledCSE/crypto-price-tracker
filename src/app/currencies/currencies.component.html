@@ -10,6 +10,13 @@
       <div class="card-body">
         <h2 class="card-title">{{ item.asset_id }}</h2>
         <p>{{ item.name }}</p>
+        <div *ngIf="item.rates && item.favorite" class="my-2">
+          <div class="my-1">
+            <p *ngFor="let curr of item.rates">
+              <span class="badge badge-secondary">{{curr.asset_id_quote}}</span> : {{ curr.rate }}
+            </p>
+          </div>
+        </div>
         <div *ngIf="!item.favorite" class="card-actions justify-end">
           <button class="btn btn-outline" (click)="markAsFavorite(item.asset_id)">Mark as Favorite</button>
         </div>

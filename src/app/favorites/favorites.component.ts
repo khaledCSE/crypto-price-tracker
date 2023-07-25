@@ -33,6 +33,7 @@ export class FavoritesComponent implements OnInit {
     const listIndex = copiedList.findIndex(el => el.asset_id === asset_id)
     this.dataService.updateList([
       ...copiedList.slice(0, listIndex),
+      { ...copiedList[listIndex], favorite: false },
       ...copiedList.slice(index + 1)
     ])
   }

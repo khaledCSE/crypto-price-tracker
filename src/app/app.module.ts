@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { CurrenciesComponent } from './currencies/currencies.component';
 import { FavoritesComponent } from './favorites/favorites.component';
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { FavoritesComponent } from './favorites/favorites.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

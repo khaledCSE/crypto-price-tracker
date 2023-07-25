@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ICrypto } from '../types';
 import { currencies } from '../seed/currency.seed'
 import { DataService } from '../services/data.service';
+import { ApiService } from '../services/api/api.service';
 
 @Component({
   selector: 'app-currencies',
@@ -13,7 +14,7 @@ export class CurrenciesComponent implements OnInit {
   searchTerm: string = '';
   filteredList: ICrypto[];
 
-  constructor(private dataService: DataService) {
+  constructor(private dataService: DataService, private apiService: ApiService) {
     this.filteredList = this.list;
   }
 
@@ -23,7 +24,21 @@ export class CurrenciesComponent implements OnInit {
       this.list = data
     })
     this.list.forEach((el) => {
-      if (el.favorite) console.log(el);
+      if (el.favorite) {
+        this.apiService.getRates(el.asset_id).subscribe((data) => {
+          const index = this.filteredList.findIndex(item => item.asset_id === el.asset_id)
+          const copied = [...this.filteredList]
+          copied[index].rates = data.rates
+          this.filteredList = [
+            ...this.filteredList.slice(0, index),
+            { ...this.filteredList[index], rates: data.rates },
+            ...this.filteredList.slice(index + 1),
+          ]
+        }, (err) => {
+          console.log(err);
+
+        })
+      };
     })
   }
 

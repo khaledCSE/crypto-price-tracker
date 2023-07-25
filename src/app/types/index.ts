@@ -1,3 +1,13 @@
+export interface IRate {
+  time: string;
+  asset_id_quote: string;
+  rate: number;
+}
+
+export interface IExchange {
+  rates: IRate[]
+}
+
 export interface ICrypto {
   asset_id: string;
   name: string;
@@ -12,8 +22,10 @@ export interface ICrypto {
   volume_1hrs_usd: number;
   volume_1day_usd: number;
   volume_1mth_usd: number;
+  price_usd?: number
   id_icon?: string;
   data_start?: string;
   data_end?: string;
   favorite?: boolean
+  rates?: IRate[]
 }
