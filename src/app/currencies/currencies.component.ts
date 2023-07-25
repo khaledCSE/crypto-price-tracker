@@ -20,10 +20,16 @@ export class CurrenciesComponent implements OnInit {
   ngOnInit(): void {
     this.dataService.list.subscribe(data => {
       this.filteredList = data
+      this.list = data
+    })
+    this.list.forEach((el) => {
+      if (el.favorite) console.log(el);
     })
   }
 
   filter() {
+    console.log({ search: this.searchTerm });
+
     this.filteredList = this.list.filter(item => item.name.toLowerCase().includes(this.searchTerm.toLowerCase()));
   }
   markAsFavorite(asset_id: string) {
