@@ -1,0 +1,17 @@
+<div class="container mx-auto">
+  <div class="flex py-1 content-center justify-center">
+    <input [(ngModel)]="searchTerm" (ngModelChange)="filter()" placeholder="Search Crypto"
+      class="input input-bordered w-full max-w-xs xl:max-w-lg my-2">
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-2">
+    <div class="card bg-base-100 shadow-xl" *ngFor="let item of filteredList">
+      <div class="card-body">
+        <h2 class="card-title">Card {{ item }}</h2>
+        <p>If a dog chews shoes whose shoes does he choose?</p>
+        <div class="card-actions justify-end">
+          <button class="btn">Buy Now</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
