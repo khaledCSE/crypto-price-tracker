@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ICrypto } from '../types';
+import { currencies } from '../seed/currency.seed'
 
 @Component({
   selector: 'app-currencies',
@@ -6,9 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./currencies.component.scss']
 })
 export class CurrenciesComponent implements OnInit {
-  list: string[] = ['Item 1', 'Item 2', 'Item 3', 'Item 4'];
+  list: ICrypto[] = currencies.map((curr) => ({ ...curr, favorite: false }));
   searchTerm: string = '';
-  filteredList: string[];
+  filteredList: ICrypto[];
 
   constructor() {
     this.filteredList = this.list;
@@ -18,6 +20,10 @@ export class CurrenciesComponent implements OnInit {
   }
 
   filter() {
-    this.filteredList = this.list.filter(item => item.toLowerCase().includes(this.searchTerm.toLowerCase()));
+    this.filteredList = this.list.filter(item => item.name.toLowerCase().includes(this.searchTerm.toLowerCase()));
+  }
+  markAsFavorite(asset_id: string) {
+    const index = this.filteredList.findIndex((el) => el.asset_id === asset_id)
+    this.filteredList[index].favorite = true
   }
 }
