@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ICrypto } from '../types';
 import { currencies } from '../seed/currency.seed'
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-currencies',
@@ -12,7 +13,7 @@ export class CurrenciesComponent implements OnInit {
   searchTerm: string = '';
   filteredList: ICrypto[];
 
-  constructor() {
+  constructor(private dataService: DataService) {
     this.filteredList = this.list;
   }
 
@@ -25,5 +26,9 @@ export class CurrenciesComponent implements OnInit {
   markAsFavorite(asset_id: string) {
     const index = this.filteredList.findIndex((el) => el.asset_id === asset_id)
     this.filteredList[index].favorite = true
+    const cloned = [...this.filteredList]
+    cloned[index].favorite = true
+    this.dataService.updateFavorites(cloned)
+    this.dataService.updateList(cloned)
   }
 }

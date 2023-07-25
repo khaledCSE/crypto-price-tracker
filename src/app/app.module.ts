@@ -5,11 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { CurrenciesComponent } from './currencies/currencies.component';
+import { FavoritesComponent } from './favorites/favorites.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CurrenciesComponent
+    CurrenciesComponent,
+    FavoritesComponent
   ],
   imports: [
     BrowserModule,
