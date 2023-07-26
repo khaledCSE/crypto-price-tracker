@@ -32,7 +32,7 @@ export class CurrenciesComponent implements OnInit {
           copied[index].rates = data.rates
           this.filteredList = [
             ...this.filteredList.slice(0, index),
-            { ...this.filteredList[index], rates: data.rates },
+            { ...this.filteredList[index], rates: data.rates, favorite: true },
             ...this.filteredList.slice(index + 1),
           ]
         }, (err) => {
