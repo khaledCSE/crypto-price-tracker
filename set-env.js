@@ -31,4 +31,12 @@ fs.writeFile(targetPath, envConfigFile, function (err) {
   }
 
   console.log(`Output generated at ${targetPath}`);
+
+  fs.readdir(dir, (err, files) => {
+    if (err) {
+      console.error(err);
+    } else {
+      console.log(`Contents of ${dir}:`, files);
+    }
+  });
 });
