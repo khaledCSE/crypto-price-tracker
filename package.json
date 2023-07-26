@@ -5,7 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "prebuild:prod": "node set-env.js --environment=prod",
-    "build:prod": "ng build --prod",
+    "build:prod": "ng build --configuration production",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
