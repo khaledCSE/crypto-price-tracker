@@ -18,6 +18,11 @@ export const environment = {
 };
 `;
 
+// Create directory if it does not exist
+if (!fs.existsSync(dir)) {
+  fs.mkdirSync(dir, { recursive: true });
+}
+
 fs.writeFile(targetPath, envConfigFile, function (err) {
   if (err) {
     console.error(err);
