@@ -1,9 +1,13 @@
 <div class="container mx-auto">
-  <div class="flex py-1 content-center justify-center">
+  <div *ngIf="coinsLoading" class="w-full min-h-screen flex justify-center items-center">
+    <span class="loading loading-spinner text-secondary loading-lg"></span>
+  </div>
+
+  <div *ngIf="!coinsLoading" class="flex py-1 content-center justify-center">
     <input [(ngModel)]="searchTerm" (ngModelChange)="filter()" placeholder="Search Crypto"
       class="input input-bordered w-full max-w-xs xl:max-w-lg my-2">
   </div>
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-2">
+  <div *ngIf="!coinsLoading" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 p-2">
     <div
       [ngClass]="item.favorite ? 'card bg-amber-200 text-slate-800 shadow-xl' : 'card border-indigo-300 border-2 shadow-xl'"
       *ngFor="let item of filteredList">

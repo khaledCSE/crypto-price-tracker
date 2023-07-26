@@ -8,11 +8,10 @@ import { currencies } from '../seed/currency.seed';
 })
 export class DataService {
   private favoritesData = new BehaviorSubject<ICrypto[]>([])
-  private listData = new BehaviorSubject<ICrypto[]>(currencies.map((curr) => ({ ...curr, favorite: false })))
+  private listData = new BehaviorSubject<ICrypto[]>([])
   favorites = this.favoritesData.asObservable()
   list = this.listData.asObservable()
 
-  constructor() { }
 
   updateFavorites(payload: ICrypto[]) {
     this.favoritesData.next(payload.filter(item => item.favorite))

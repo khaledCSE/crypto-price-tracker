@@ -13,6 +13,7 @@ export class CurrenciesComponent implements OnInit {
   list: ICrypto[] = [];
   searchTerm: string = '';
   filteredList: ICrypto[];
+  coinsLoading = true
 
   constructor(private dataService: DataService, private apiService: ApiService) {
     this.filteredList = this.list;
@@ -39,6 +40,14 @@ export class CurrenciesComponent implements OnInit {
 
         })
       };
+    })
+
+    // Making the API call
+    this.apiService.getCoins().subscribe((data) => {
+      // Too large a request, many of those don't even have information. Had to trim down for simplicity
+      const updated = data.filter((curr) => curr.type_is_crypto === 1).map((curr) => ({ ...curr, favorite: false })).slice(0, 100)
+      this.dataService.updateList(updated)
+      this.coinsLoading = false
     })
   }
 
