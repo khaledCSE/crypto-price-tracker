@@ -3,6 +3,8 @@ const yargs = require('yargs');
 
 require('dotenv').config();
 
+const dir = './src/environments';
+
 const argv = yargs.argv;
 const environment = argv.environment;
 const isProd = environment === 'prod';
