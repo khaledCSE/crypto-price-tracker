@@ -15,7 +15,7 @@ const targetPath = path.join(dir, 'environment.ts');
 const envConfigFile = `
 export const environment = {
   production: ${isProd},
-  apiKey: "${process.env.API_Key}"
+  apiKey: "${process.env.API_KEY}"
 };
 `;
 
