@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "postinstall": "envsub --syntax %% --env API_KEY src/environments/environment.prod.ts",
     "start": "ng serve",
-    "build": "ng build",
+    "prebuild": "node set-env.js --environment=prod",
+    "build": "ng build --prod",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -19,8 +19,10 @@
     "@angular/platform-browser": "^16.1.0",
     "@angular/platform-browser-dynamic": "^16.1.0",
     "@angular/router": "^16.1.0",
+    "dotenv": "^16.3.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
+    "yargs": "^17.7.2",
     "zone.js": "~0.13.0"
   },
   "devDependencies": {
@@ -30,7 +32,6 @@
     "@types/jasmine": "~4.3.0",
     "autoprefixer": "^10.4.14",
     "daisyui": "^3.4.0",
-    "envsub": "^4.1.0",
     "jasmine-core": "~4.6.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
