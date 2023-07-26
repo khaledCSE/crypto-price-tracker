@@ -1,5 +1,6 @@
 const fs = require('fs');
 const yargs = require('yargs');
+const path = require('path')
 
 require('dotenv').config();
 
@@ -9,9 +10,7 @@ const argv = yargs.argv;
 const environment = argv.environment;
 const isProd = environment === 'prod';
 
-const targetPath = isProd
-  ? `./src/environments/environment.prod.ts`
-  : `./src/environments/environment.ts`;
+const targetPath = path.join(dir, 'environment.ts');
 
 const envConfigFile = `
 export const environment = {
